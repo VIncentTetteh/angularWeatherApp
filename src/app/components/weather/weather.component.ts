@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription} from 'rxjs';
+import { LoaderService } from 'src/app/services/loader.service';
 import { SharedWeatherDataService } from 'src/app/shared/shared-weather-data.service';
 import { WeatherApiObjects } from './../../classes/WeatherApiObjects';
 
@@ -13,7 +14,8 @@ export class WeatherComponent implements OnInit {
 
   constructor(private sharedWeatherService:SharedWeatherDataService,
     private router:Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    public loaderService:LoaderService
     ) { }
 
   weatherData!:WeatherApiObjects | null;
@@ -22,7 +24,9 @@ export class WeatherComponent implements OnInit {
   temp!:number
   feelsLike!:number;
   symbol:string = "C"
+  isFeelSymbol:string = "C"
   isconverted = true;
+  isfeelsConverted = true;
 
   weatherDataSubscription!: Subscription;
   weatherDataErrorSubscription!: Subscription;
@@ -76,6 +80,20 @@ export class WeatherComponent implements OnInit {
       this.symbol = "C"
       this.temp =  Math.round((this.temp - 32) * 5/9);
       this.isconverted = true;
+    }
+    this.convertFeelsToFahriet();
+  }
+
+
+  convertFeelsToFahriet(){
+    if(this.isfeelsConverted){
+      this.isFeelSymbol = "F"
+      this.feelsLike = Math.round((this.feelsLike * 9/5) + 32)
+      this.isfeelsConverted = false;
+    }else{
+      this.isFeelSymbol = "C"
+      this.feelsLike =  Math.round((this.feelsLike - 32) * 5/9);
+      this.isfeelsConverted = true;
     }
   }
 

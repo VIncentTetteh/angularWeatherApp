@@ -1,6 +1,9 @@
-<div class="wrapper" >
-  <header title="Home" (click)="reload()" style="cursor: pointer;"><i class='bx bx-left-arrow-alt'></i>Weather App</header>
-  <section class="weather-part" *ngIf="!isError">
+<div class="wrapper">
+  <header title="Home" (click)="reload()" style="cursor: pointer;"><i class="fa fa-arrow-left" style="font-size:24px"></i>Back</header>
+  <div class="spinner">
+    <app-spinner ></app-spinner>
+  </div>
+  <section class="weather-part" *ngIf="!isError" >
     <div class="icon-toggle">
       <img class="icon-image" *ngFor="let data of weatherData?.weather" src="http://openweathermap.org/img/w/{{data?.icon}}.png" alt="Weather Icon">
       <div class="toggle">
@@ -25,7 +28,7 @@
         <div class="details">
           <div class="temp">
             <span class="numb-2">{{feelsLike}}</span>
-            <span class="deg">°</span>C
+            <span class="deg">°</span>{{isFeelSymbol}}
           </div>
           <p>Feels like</p>
         </div>
@@ -33,7 +36,7 @@
       <div class="column humidity">
         <i class='bx bxs-droplet-half'></i>
         <div class="details">
-          <span> {{weatherData?.main?.humidity}} </span>
+          <span> {{weatherData?.main?.humidity}} %rh</span>
           <p>Humidity</p>
         </div>
       </div>
