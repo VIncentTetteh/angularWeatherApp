@@ -168,10 +168,12 @@ header i{
 .F{
   margin-right: 85px;
 }
-
-/* .spinner{
+/* 
+.spinner{
   position:absolute;
   height: 100%;
   width: 100%;
-  z-index: 99;
+  background-color: #373839;
+  opacity: 0.8;
+
 } */
