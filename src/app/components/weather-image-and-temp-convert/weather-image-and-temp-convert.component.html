@@ -1,1 +1,8 @@
-<p>weather-image-and-temp-convert works!</p>
+<div class="icon-toggle">
+  <img class="icon-image" *ngFor="let data of weatherDataIcon" src="http://openweathermap.org/img/w/{{data?.icon}}.png" alt="Weather Icon">
+  <div class="toggle">
+    <label for="temp" class="F">°C</label>
+    <input type="checkbox" id="temp" (click)="convertTemp()">
+    <label for="temp">°F</label>
+  </div>
+</div>
