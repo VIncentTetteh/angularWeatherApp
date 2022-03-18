@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <header  routerLink="../search" style="cursor: pointer;"><i class='bx bx-left-arrow-alt'></i>Weather App</header>
+  <section class="input-part">
+    <p class="info-txt"></p>
+    <div class="content">
+      <form [formGroup]="weatherLocationForm">
+        <input type="text" spellcheck="false" placeholder="Enter city name" formControlName="location">
+      </form>
+      <div class="separator"></div>
+      <button (click)="getWeatherApi()" routerLink="../weather">Search Location</button>
+    </div>
+  </section>
+</div>

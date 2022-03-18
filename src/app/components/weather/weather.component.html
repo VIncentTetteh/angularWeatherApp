@@ -1,0 +1,46 @@
+<div class="wrapper" >
+  <header title="Home" (click)="reload()" style="cursor: pointer;"><i class='bx bx-left-arrow-alt'></i>Weather App</header>
+  <section class="weather-part" *ngIf="!isError">
+    <div class="icon-toggle">
+      <img class="icon-image" *ngFor="let data of weatherData?.weather" src="http://openweathermap.org/img/w/{{data?.icon}}.png" alt="Weather Icon">
+      <div class="toggle">
+        <label for="temp" class="F">°C</label>
+        <input type="checkbox" id="temp" (click)="convertToFahriet()">
+        <label for="temp">°F</label>
+      </div>
+    </div>
+    <div class="temp">
+      <span class="numb" style="margin-left: 30px;">{{temp}}</span>
+      <span class="deg">°</span>{{symbol}}
+    </div>
+
+    <div class="weather"*ngFor="let data of weatherData?.weather; trackBy:identify"> {{data.description}}</div>
+    <div class="location">
+      <i class='bx bx-map'></i>
+      <span>{{weatherData?.name}} - {{weatherData?.sys?.country}}</span>
+    </div>
+    <div class="bottom-details">
+      <div class="column feels">
+        <i class='bx bxs-thermometer'></i>
+        <div class="details">
+          <div class="temp">
+            <span class="numb-2">{{feelsLike}}</span>
+            <span class="deg">°</span>C
+          </div>
+          <p>Feels like</p>
+        </div>
+      </div>
+      <div class="column humidity">
+        <i class='bx bxs-droplet-half'></i>
+        <div class="details">
+          <span> {{weatherData?.main?.humidity}} </span>
+          <p>Humidity</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="weather-part" *ngIf="isError">
+    <app-weather-location-not-found [errorMessage]="weatherDataError"></app-weather-location-not-found>
+  </section>
+</div>
